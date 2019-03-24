@@ -3,8 +3,7 @@
     "rabbitmq": "no",
     "redis": "no",
     "minio": "no",
-    "elasticsearch": "no",
-    "kibana": "no",
+    "elasticsearch_and_kibanna": "no",
     "postgres": "no",
     "consul": "no"
 }

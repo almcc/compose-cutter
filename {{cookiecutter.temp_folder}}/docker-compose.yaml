@@ -25,17 +25,26 @@ services:
       MINIO_ACCESS_KEY: minio
       MINIO_SECRET_KEY: minio123
     command: server /data
-  {% endif %}{% if cookiecutter.elasticsearch.lower().startswith('y') %}
+  {% endif %}{% if cookiecutter.elasticsearch_and_kibanna.lower().startswith('y') %}
   elasticsearch:
     image: elasticsearch:6.6.2
     ports:
       - "9200:9200"
       - "9300:9300"
-  {% endif %}{% if cookiecutter.kibana.lower().startswith('y') %}
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
   kibana:
     image: kibana:6.6.2
     ports:
       - "5601:5601"
+    links:
+      - elasticsearch
   {% endif %}{% if cookiecutter.postgres.lower().startswith('y') %}
   postgres:
     image: postgres:11
