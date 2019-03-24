@@ -1,3 +1,10 @@
 {
-    "temp_folder": "_tmp"
+    "temp_folder": "_tmp",
+    "rabbitmq": "no",
+    "redis": "no",
+    "minio": "no",
+    "elasticsearch": "no",
+    "kibana": "no",
+    "postgres": "no",
+    "consul": "no"
 }
